@@ -17,8 +17,8 @@ pipeline{
     // AWS part
     environment{
         registryCredentials= 'ecr:us-east-1:IAM_User'
-        appRegistry= "121033012151.dkr.ecr.us-east-1.amazonaws.com/vprofileapp"
-        vprofileRegistry= "https://121033012151.dkr.ecr.us-east-1.amazonaws.com"
+        appRegistry= "acctID.dkr.ecr.us-east-1.amazonaws.com/vprofileapp"
+        vprofileRegistry= "https://AcctID.dkr.ecr.us-east-1.amazonaws.com"
     }
     
 
