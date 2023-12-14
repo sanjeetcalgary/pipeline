@@ -222,7 +222,7 @@
         <repository>
             <id>nexus-snapshots</id>
             <name>sanjeet</name>
-            <url>http://192.168.208.1:8081/repository/vprofile-repo/</url>
+            <url>http://192.168.59.1:8081/repository/vprofile-repo/</url>
         </repository>
     </distributionManagement> 
 </project>
