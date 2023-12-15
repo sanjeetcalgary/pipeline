@@ -15,18 +15,21 @@ pipeline{
     }
 
     // AWS part
-    environment{
+    /*
+        environment{
         registryCredentials= 'ecr:us-east-1:IAM_User'
         appRegistry= "acctID.dkr.ecr.us-east-1.amazonaws.com/vprofileapp"
         vprofileRegistry= "https://AcctID.dkr.ecr.us-east-1.amazonaws.com"
     }
+     */
+
     
 
     stages{
         stage('Cloning'){
             steps{
                 sh 'echo Cloning Started ..........'
-                git url:'git@github.com:sanjeetcalgary/pipeline.git', branch:'docker_ecr'
+                git url:'git@github.com:sanjeetcalgary/pipeline.git', branch:'webhook_triggers'
                 sh 'echo Cloning Completed ..........'
             }
         }
@@ -77,6 +80,7 @@ pipeline{
             }
         }
 
+        /*
         stage('Build Images'){
             steps{
                 script{
@@ -95,6 +99,8 @@ pipeline{
                 }
             }
         }
+         */
+        
     }
     post{
         always{

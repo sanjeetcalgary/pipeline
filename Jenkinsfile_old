@@ -16,10 +16,9 @@ pipeline{
 
     // AWS part
     environment{
-        registryCredentials= 'ecr:regioncode:CredentialIDinJenkins'
-        appRegistry= "registryurl/registryname"
-        
-
+        registryCredentials= 'ecr:us-east-1:IAM_User'
+        appRegistry= "acctID.dkr.ecr.us-east-1.amazonaws.com/vprofileapp"
+        vprofileRegistry= "https://AcctID.dkr.ecr.us-east-1.amazonaws.com"
     }
     
 
@@ -75,6 +74,25 @@ pipeline{
         stage('Upload artifacts'){
             steps{
                 sh 'mvn clean deploy'
+            }
+        }
+
+        stage('Build Images'){
+            steps{
+                script{
+                    dockerImage = docker.build(appRegistry + ":$BUILD_NUMBER", "./Dockerfile/app/multistage/")                    
+                }
+            }
+        }
+
+        stage('Upload images to registry'){
+            steps{
+                script{
+                    docker.withRegistry( vprofileRegistry, registryCredentials ) {
+                    dockerImage.push("$BUILD_NUMBER")
+                    dockerImage.push('latest')
+                    }
+                }
             }
         }
     }
